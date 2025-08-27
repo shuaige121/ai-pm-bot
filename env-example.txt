@@ -1,0 +1,23 @@
+# Telegram配置
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+TELEGRAM_GROUP_ID=-1002985202794
+BOSS_ID=7624953278
+
+# Notion配置
+NOTION_API_KEY=your_notion_api_key
+NOTION_PROJECT_DB_ID=your_project_database_id
+NOTION_TASK_DB_ID=your_task_database_id
+NOTION_OBSTACLE_DB_ID=your_obstacle_database_id
+NOTION_DB_LAPURE=lapure_database_id
+NOTION_DB_BBHOUSE=bbhouse_database_id
+
+# AI服务器配置
+AI_SERVER_URL=http://127.0.0.1:3001
+AI_SERVER_PORT=3001
+AI_SERVER_KEY=supersecret_please_change
+
+# OpenAI配置（用于语音功能）
+OPENAI_API_KEY=your_openai_api_key
+
+# 语音回复开关（true/false）
+ENABLE_VOICE_REPLY=false

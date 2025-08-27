@@ -1,0 +1,46 @@
+{
+  "name": "ai-pm-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bot-simple.js",
+    "start:simple": "node bot-simple.js",
+    "start:polling": "node bot-polling.js",
+    "start:natural": "node bot-natural.js",
+    "start:claude": "node bot-claude.js",
+    "start:claude-cli": "node bot-claude-cli.js",
+    "start:stable": "node bot-stable.js",
+    "start:pm2": "./pm2-start.sh",
+    "tunnel": "./start-tunnel.sh",
+    "dev": "nodemon bot.js",
+    "webhook:set": "node setWebhook.js",
+    "webhook:delete": "node setWebhook.js delete",
+    "test": "node test-bot.js",
+    "pm2:status": "npx pm2 status",
+    "pm2:logs": "npx pm2 logs",
+    "pm2:stop": "npx pm2 stop all",
+    "pm2:restart": "npx pm2 restart all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@notionhq/client": "^4.0.2",
+    "@suekou/mcp-notion-server": "^1.2.4",
+    "axios": "^1.11.0",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "edge-tts": "^1.0.1",
+    "express": "^5.1.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "node-cron": "^4.2.1",
+    "node-telegram-bot-api": "^0.66.0",
+    "openai": "^5.15.0",
+    "whisper-node": "^1.1.1"
+  },
+  "devDependencies": {
+    "pm2": "^6.0.8"
+  }
+}

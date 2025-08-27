@@ -1,0 +1,34 @@
+{
+  "name": "ai-pm-bot",
+  "version": "1.0.0",
+  "description": "AI项目管理机器人Mac应用",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --mac"
+  },
+  "keywords": ["telegram", "bot", "notion", "ai"],
+  "author": "LaPure",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.64.0",
+    "@notionhq/client": "^2.2.14",
+    "dotenv": "^16.3.1"
+  },
+  "build": {
+    "appId": "com.lapure.aipmbot",
+    "productName": "AI PM Bot",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.icns"
+    }
+  }
+}

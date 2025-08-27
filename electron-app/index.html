@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AI项目管理机器人</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .status {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff4444;
+        }
+        
+        .status-dot.active {
+            background: #44ff44;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .control-panel {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .control-panel h2 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button.primary {
+            background: #4CAF50;
+        }
+        
+        button.danger {
+            background: #f44336;
+        }
+        
+        .log-viewer {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            height: 200px;
+            overflow-y: auto;
+        }
+        
+        .log-viewer h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .log-content {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #00ff00;
+        }
+        
+        .footer {
+            padding: 10px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 12px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            animation: slideIn 0.3s;
+            display: none;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 AI项目管理机器人</h1>
+        <div class="status">
+            <div class="status-item">
+                <span class="status-dot" id="bot-status"></span>
+                <span>Telegram Bot</span>
+            </div>
+            <div class="status-item">
+                <span class="status-dot" id="ai-status"></span>
+                <span>AI服务器</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="control-panel">
+            <h2>🎮 控制面板</h2>
+            <div class="button-group">
+                <button class="primary" onclick="startServices()">▶️ 启动服务</button>
+                <button class="danger" onclick="stopServices()">⏹ 停止服务</button>
+                <button onclick="restartServices()">🔄 重启服务</button>
+                <button onclick="testConnection()">🧪 测试连接</button>
+                <button onclick="openConfig()">⚙️ 配置设置</button>
+            </div>
+        </div>
+        
+        <div class="control-panel">
+            <h2>📊 快速操作</h2>
+            <div class="button-group">
+                <button onclick="sendTestMessage()">📨 发送测试消息</button>
+                <button onclick="listTasks()">📋 查看任务列表</button>
+                <button onclick="viewStats()">📈 查看统计</button>
+                <button onclick="openNotion()">📝 打开Notion</button>
+                <button onclick="openTelegram()">💬 打开Telegram</button>
+            </div>
+        </div>
+        
+        <div class="log-viewer">
+            <h3>📜 实时日志</h3>
+            <div class="log-content" id="log-content">
+                等待服务启动...
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        AI PM Bot v1.0 | Powered by Claude AI & Notion
+    </div>
+    
+    <div class="notification" id="notification">
+        <strong id="notification-title"></strong>
+        <p id="notification-body"></p>
+    </div>
+    
+    <script>
+        const { ipcRenderer } = require('electron');
+        const { spawn } = require('child_process');
+        const path = require('path');
+        
+        // 更新状态显示
+        ipcRenderer.on('status-update', (event, status) => {
+            document.getElementById('bot-status').className = status.bot ? 'status-dot active' : 'status-dot';
+            document.getElementById('ai-status').className = status.aiServer ? 'status-dot active' : 'status-dot';
+        });
+        
+        // 显示通知
+        ipcRenderer.on('notification', (event, data) => {
+            showNotification(data.title, data.body);
+        });
+        
+        function showNotification(title, body) {
+            const notif = document.getElementById('notification');
+            document.getElementById('notification-title').textContent = title;
+            document.getElementById('notification-body').textContent = body;
+            notif.style.display = 'block';
+            
+            setTimeout(() => {
+                notif.style.display = 'none';
+            }, 3000);
+        }
+        
+        function startServices() {
+            const projectPath = path.join(__dirname, '..');
+            const proc = spawn('./start.sh', [], { cwd: projectPath, shell: true });
+            
+            proc.stdout.on('data', (data) => {
+                appendLog(data.toString());
+            });
+            
+            showNotification('启动中', '正在启动服务...');
+        }
+        
+        function stopServices() {
+            const projectPath = path.join(__dirname, '..');
+            spawn('./stop.sh', [], { cwd: projectPath, shell: true });
+            showNotification('停止中', '正在停止服务...');
+        }
+        
+        function restartServices() {
+            stopServices();
+            setTimeout(startServices, 2000);
+        }
+        
+        function testConnection() {
+            const projectPath = path.join(__dirname, '..');
+            const proc = spawn('node', ['test-all-features.js'], { cwd: projectPath });
+            
+            proc.stdout.on('data', (data) => {
+                appendLog(data.toString());
+            });
+            
+            showNotification('测试中', '正在测试功能...');
+        }
+        
+        function sendTestMessage() {
+            const projectPath = path.join(__dirname, '..');
+            const code = `
+                require('dotenv').config();
+                const TelegramBot = require('node-telegram-bot-api');
+                const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, {polling: false});
+                bot.sendMessage(process.env.TELEGRAM_GROUP_ID, '🧪 测试消息：来自Mac应用')
+                    .then(() => console.log('✅ 消息发送成功'))
+                    .catch(err => console.log('❌ 发送失败'));
+            `;
+            
+            const proc = spawn('node', ['-e', code], { cwd: projectPath });
+            showNotification('发送中', '正在发送测试消息...');
+        }
+        
+        function appendLog(text) {
+            const logContent = document.getElementById('log-content');
+            logContent.textContent += text;
+            logContent.scrollTop = logContent.scrollHeight;
+            
+            // 限制日志长度
+            if (logContent.textContent.length > 10000) {
+                logContent.textContent = logContent.textContent.slice(-5000);
+            }
+        }
+        
+        function openConfig() {
+            const { shell } = require('electron');
+            const configPath = path.join(__dirname, '..', '.env');
+            shell.openPath(configPath);
+        }
+        
+        function openNotion() {
+            require('electron').shell.openExternal('https://notion.so');
+        }
+        
+        function openTelegram() {
+            require('electron').shell.openExternal('https://web.telegram.org');
+        }
+        
+        function listTasks() {
+            appendLog('\n正在获取任务列表...\n');
+            // 实际实现需要调用notion-service.js
+        }
+        
+        function viewStats() {
+            appendLog('\n正在生成统计报告...\n');
+            // 实际实现需要调用相关服务
+        }
+        
+        // 监听日志文件
+        const fs = require('fs');
+        const logPath = '/tmp/bot.log';
+        
+        if (fs.existsSync(logPath)) {
+            fs.watchFile(logPath, { interval: 1000 }, (curr, prev) => {
+                if (curr.mtime > prev.mtime) {
+                    fs.readFile(logPath, 'utf8', (err, data) => {
+                        if (!err) {
+                            const lines = data.split('\n').slice(-10);
+                            document.getElementById('log-content').textContent = lines.join('\n');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
