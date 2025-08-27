@@ -9,10 +9,10 @@ const { createProjectWithTasks, updateTaskStatus, createObstacle, generateProgre
 require('dotenv').config();
 
 // 配置
-const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7809164403:AAFSNjGqrOUSXlQS_0xolVWFkirNud2ojaE';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
 const BOT_USERNAME = '@lapureleonardchow_bot';
-const TELEGRAM_GROUP_ID = process.env.TELEGRAM_GROUP_ID || '-1002985202794';
-const BOSS_ID = parseInt(process.env.BOSS_ID) || 7624953278;
+const TELEGRAM_GROUP_ID = process.env.TELEGRAM_GROUP_ID || 'YOUR_GROUP_ID_HERE';
+const BOSS_ID = parseInt(process.env.BOSS_ID) || YOUR_BOSS_ID;
 
 // Claude API配置 - 需要你的API key
 const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY || 'YOUR_CLAUDE_API_KEY';

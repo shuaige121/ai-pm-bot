@@ -27,7 +27,7 @@ echo "TUNNEL_URL=$TUNNEL_URL" > .tunnel-url
 echo "WEBHOOK_URL=$TUNNEL_URL/webhook" >> .tunnel-url
 
 # 设置Telegram Webhook
-BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-"7809164403:AAFSNjGqrOUSXlQS_0xolVWFkirNud2ojaE"}
+BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-"YOUR_BOT_TOKEN_HERE"}
 WEBHOOK_URL="$TUNNEL_URL/webhook"
 
 echo "🔗 设置Telegram Webhook: $WEBHOOK_URL"

@@ -7,7 +7,7 @@ const cron = require('node-cron');
 require('dotenv').config();
 
 // 配置
-const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7809164403:AAFSNjGqrOUSXlQS_0xolVWFkirNud2ojaE';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
 const BOT_USERNAME = '@lapureleonardchow_bot';
 const TELEGRAM_GROUP_ID = process.env.TELEGRAM_GROUP_ID || '-4976924235';
 

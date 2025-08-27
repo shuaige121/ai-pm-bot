@@ -20,7 +20,7 @@ function pickBizDBIds(text) {
 
   // 注意: 各业务数据库的schema不同
   // - Salon DB (f2663c0c) 是理发店信息库，不能用于项目管理
-  // - BB House DB (259efdcd-10f5-8134) 是任务管理库，使用中文属性
+  // - BB House DB (YOUR_DATABASE_ID) 是任务管理库，使用中文属性
   // - LaPure DB (238efdcd) 是项目库，使用英文属性
   // - 通用项目/任务库使用中文属性
   

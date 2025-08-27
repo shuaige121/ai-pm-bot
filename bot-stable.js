@@ -62,10 +62,10 @@ class Logger {
 const logger = new Logger();
 
 // 配置
-const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7809164403:AAFSNjGqrOUSXlQS_0xolVWFkirNud2ojaE';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
 const BOT_USERNAME = '@lapureleonardchow_bot';
 const TELEGRAM_GROUP_ID = process.env.TELEGRAM_GROUP_ID || '-4976924235';
-const BOSS_ID = parseInt(process.env.BOSS_ID) || 7624953278;
+const BOSS_ID = parseInt(process.env.BOSS_ID) || YOUR_BOSS_ID;
 
 // Notion API 配置
 const NOTION_API_KEY = process.env.NOTION_API_KEY;

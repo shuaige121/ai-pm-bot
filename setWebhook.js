@@ -4,7 +4,7 @@
 const axios = require('axios');
 require('dotenv').config();
 
-const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7809164403:AAFSNjGqrOUSXlQS_0xolVWFkirNud2ojaE';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
 const WEBHOOK_URL = process.env.WEBHOOK_URL || 'https://your-domain.com/webhook';
 
 async function setWebhook() {

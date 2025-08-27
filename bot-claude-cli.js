@@ -39,15 +39,15 @@ function assertClaudeReady() {
 assertClaudeReady();
 
 // ========== 配置 ==========
-const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7809164403:AAFSNjGqrOUSXlQS_0xolVWFkirNud2ojaE';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
 const BOT_USERNAME = '@lapureleonardchow_bot';
-const TELEGRAM_GROUP_ID = process.env.TELEGRAM_GROUP_ID || '-1002985202794';
-const BOSS_ID = parseInt(process.env.BOSS_ID) || 7624953278;
+const TELEGRAM_GROUP_ID = process.env.TELEGRAM_GROUP_ID || 'YOUR_GROUP_ID_HERE';
+const BOSS_ID = parseInt(process.env.BOSS_ID) || YOUR_BOSS_ID;
 
 // Notion Database IDs (用于备用查询)
-const NOTION_PROJECT_DB_ID = process.env.NOTION_PROJECT_DB_ID || '259efdcd-10f5-8157-b1d0-d2d9a6253aa1';
-const NOTION_TASK_DB_ID = process.env.NOTION_TASK_DB_ID || '259efdcd-10f5-812d-a0d8-df24497b18fd';
-const NOTION_OBSTACLE_DB_ID = process.env.NOTION_OBSTACLE_DB_ID || '259efdcd-10f5-8100-9949-d0d795379089';
+const NOTION_PROJECT_DB_ID = process.env.NOTION_PROJECT_DB_ID || 'YOUR_DATABASE_ID';
+const NOTION_TASK_DB_ID = process.env.NOTION_TASK_DB_ID || 'YOUR_DATABASE_ID';
+const NOTION_OBSTACLE_DB_ID = process.env.NOTION_OBSTACLE_DB_ID || 'YOUR_DATABASE_ID';
 
 // ========== 初始化 Telegram Bot ==========
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: true });
